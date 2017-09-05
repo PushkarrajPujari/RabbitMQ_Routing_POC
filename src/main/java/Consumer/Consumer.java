@@ -14,11 +14,17 @@ public class Consumer {
     /**
      * Stage 2 - Consumer Topic exchange
      * */
-    public final static String EXCHANGE_TYPE = "topic";
-    public final static String EXCHANGE_NAME = "EX3";
+    public static Scanner scanner;
+    public static String EXCHANGE_TYPE;
+    public static String EXCHANGE_NAME;
     public static String Queue_Name;
     public static MyConsumer myConsumer;
     public static String [] Routing_Key;
+    static {
+        scanner = new Scanner(System.in);
+        EXCHANGE_TYPE = getInput("Enter Exchange_Type");
+        EXCHANGE_NAME = getInput("Enter Exchange_Name");
+    }
     public static void main(String[] args) {
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -41,11 +47,10 @@ public class Consumer {
 
     public static String getInput(String string){
         System.out.println(string);
-        return new Scanner(System.in).nextLine();
+        return scanner.nextLine();
     }
 
     public static String [] getRoutingKey(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Number of Routing key to be entered");
         Routing_Key = new String[scanner.nextInt()];
         scanner.nextLine();

@@ -14,12 +14,19 @@ public class Publisher {
     /**
      * Stage 4 :- Branch TopicExchange Publisher
      * */
-    public final static String EXCHANGE_TYPE = "topic";
-    public final static String EXCHANGE_NAME = "EX3";
+    public static Scanner scanner;
+    public static String EXCHANGE_TYPE;
+    public static String EXCHANGE_NAME;
     public static String ROUTING_KEY;
     public static String message;
     public static boolean flag = true;
     public static String response;
+
+    static {
+        scanner = new Scanner(System.in);
+        EXCHANGE_TYPE = getInput("Enter Exchange_Type");
+        EXCHANGE_NAME = getInput("Enter Exchange_Name");
+    }
     public static void main(String[] args) {
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
