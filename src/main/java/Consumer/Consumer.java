@@ -16,10 +16,9 @@ public class Consumer {
      * */
     public final static String EXCHANGE_TYPE = "direct";
     public final static String EXCHANGE_NAME = "EX2";
-    public final static String ROUTING_KEY = "r1";
     public static String Queue_Name;
     public static MyConsumer myConsumer;
-
+    public static String [] Routing_Key;
     public static void main(String[] args) {
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -27,7 +26,9 @@ public class Consumer {
             Channel channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME,EXCHANGE_TYPE);
             Queue_Name = channel.queueDeclare().getQueue();
-            channel.queueBind(Queue_Name,EXCHANGE_NAME,ROUTING_KEY);
+            for(String routingKey:getRoutingKey()){
+                channel.queueBind(Queue_Name,EXCHANGE_NAME,routingKey);
+            }
             myConsumer = new MyConsumer(channel);
             channel.basicConsume(Queue_Name,true,myConsumer);
             getInput("Press Enter to Exit .....");
@@ -41,5 +42,17 @@ public class Consumer {
     public static String getInput(String string){
         System.out.println(string);
         return new Scanner(System.in).nextLine();
+    }
+
+    public static String [] getRoutingKey(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Number of Routing key to be entered");
+        Routing_Key = new String[scanner.nextInt()];
+        scanner.nextLine();
+        for(int i = 0;i<Routing_Key.length;i++){
+            System.out.println("Enter RoutingKey ["+i+"]");
+            Routing_Key[i] = scanner.nextLine();
+        }
+        return Routing_Key;
     }
 }
