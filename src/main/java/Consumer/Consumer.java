@@ -12,10 +12,10 @@ import java.util.Scanner;
  */
 public class Consumer {
     /**
-     * Stage 2 - Consumer Direct exchange
+     * Stage 2 - Consumer Topic exchange
      * */
-    public final static String EXCHANGE_TYPE = "direct";
-    public final static String EXCHANGE_NAME = "EX2";
+    public final static String EXCHANGE_TYPE = "topic";
+    public final static String EXCHANGE_NAME = "EX3";
     public static String Queue_Name;
     public static MyConsumer myConsumer;
     public static String [] Routing_Key;
