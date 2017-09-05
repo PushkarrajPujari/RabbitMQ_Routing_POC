@@ -12,10 +12,10 @@ import java.util.Scanner;
  */
 public class Publisher {
     /**
-     * Stage 1 - Publisher for direct routing
+     * Stage 4 :- Branch TopicExchange Publisher
      * */
-    public final static String EXCHANGE_TYPE = "direct";
-    public final static String EXCHANGE_NAME = "EX2";
+    public final static String EXCHANGE_TYPE = "topic";
+    public final static String EXCHANGE_NAME = "EX3";
     public static String ROUTING_KEY;
     public static String message;
     public static boolean flag = true;
