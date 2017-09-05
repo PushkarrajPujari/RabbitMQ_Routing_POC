@@ -9,10 +9,13 @@ import com.rabbitmq.client.ConnectionFactory;
  * @Since : 05/09/2017
  */
 public class Publisher {
+    /**
+     * Stage 1 - Publisher for direct routing
+     * */
     public final static String EXCHANGE_TYPE = "direct";
     public final static String EXCHANGE_NAME = "EX2";
     public final static String ROUTING_KEY = "r1";
-    public static String message ;
+    public static String message;
     public static void main(String[] args) {
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
