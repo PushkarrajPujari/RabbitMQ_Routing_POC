@@ -35,7 +35,7 @@ public class Publisher {
             Channel channel = connection.createChannel();
             channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE);
             while (flag){
-                ROUTING_KEY = getInput("Enter Routing_Key");
+                ROUTING_KEY = (EXCHANGE_TYPE.equalsIgnoreCase("fanout"))?"":getInput("Enter Routing_Key");
                 message = getInput("Enter Your Message");
                 channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, message.getBytes());
                 System.out.println(" [x] Sent '" + message + "'");

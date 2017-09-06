@@ -51,12 +51,18 @@ public class Consumer {
     }
 
     public static String [] getRoutingKey(){
-        System.out.println("Enter Number of Routing key to be entered");
-        Routing_Key = new String[scanner.nextInt()];
-        scanner.nextLine();
-        for(int i = 0;i<Routing_Key.length;i++){
-            System.out.println("Enter RoutingKey ["+i+"]");
-            Routing_Key[i] = scanner.nextLine();
+        if(!EXCHANGE_TYPE.equalsIgnoreCase("fanout")){
+            System.out.println("Enter Number of Routing key to be entered");
+            Routing_Key = new String[scanner.nextInt()];
+            scanner.nextLine();
+            for(int i = 0;i<Routing_Key.length;i++){
+                System.out.println("Enter RoutingKey ["+i+"]");
+                Routing_Key[i] = scanner.nextLine();
+            }
+        }else{
+            System.out.println(EXCHANGE_TYPE +" exchange doesn't require a routing key");
+            Routing_Key = new String[1];
+            Routing_Key[0] = "";
         }
         return Routing_Key;
     }
